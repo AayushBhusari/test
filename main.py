@@ -10,12 +10,12 @@ FPS = 50
 VELO = 5
 enemy_velo = 3
 initial_spawn_frequency = 4
-increase_spawn_rate_interval = 20  # Increase spawn rate every 20 seconds
-spawn_rate_increment = 1  # Increment spawn rate by 1 unit
+increase_spawn_rate_interval = 20
+spawn_rate_increment = 1
 
-# Initialize Pygame
+
 pygame.init()
-pygame.mixer.init()  # Initialize the mixer module for sound
+pygame.mixer.init()
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Space Warrior")
 
@@ -35,7 +35,7 @@ class Bullet:
         self.color = (255, 0, 0)
 
     def move(self):
-        self.rect.y -= VELO * 2  # Bullets move upward
+        self.rect.y -= VELO * 2
 
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, self.rect)
@@ -53,7 +53,7 @@ def draw_window(ship, enemies, bullets, destroyed_count):
     WIN.blit(text, (10, 10))
     pygame.display.update()  # Update the display
 
-# Handle spaceship movements and prevent going out of the window
+
 def handle_movement(keys_pressed, ship):
     if keys_pressed[pygame.K_LEFT] and ship.x - VELO > 0:
         ship.x -= VELO
@@ -64,7 +64,6 @@ def handle_movement(keys_pressed, ship):
     if keys_pressed[pygame.K_DOWN] and ship.y + VELO + ship.height < HEIGHT:
         ship.y += VELO
 
-# Generate a random enemy position
 def generate_enemy():
     x = random.randint(0, WIDTH - 55)
     y = 10
@@ -74,12 +73,9 @@ def generate_enemy():
 def check_collisions(ship, enemies):
     for enemy in enemies:
         if ship.colliderect(enemy):
-            return True  # Collision detected
-    return False  # No collision
+            return True
+    return False
 
-# Game over screen
-# Game over screen
-# Game over screen
 def game_over(destroyed_count):
     font = pygame.font.Font(None, 74)
     text = font.render("Game Over", True, WHITE)
